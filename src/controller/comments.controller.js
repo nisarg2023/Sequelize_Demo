@@ -7,8 +7,16 @@ const getAllComments = async (req, res) => {
 
 const addComments = async (req, res) => {
 
-    const results = await db.comments.create(req.body);
-    res.send(results)
+    try {
+
+        const results = await db.comments.create(req.body);
+        res.send(results)
+    }
+    catch (err) { 
+        console.log(err);
+        res.send({ "error": results })
+
+     }
 }
 
 module.exports = { getAllComments, addComments }

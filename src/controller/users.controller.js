@@ -6,8 +6,17 @@ const getAllUsers = async (req,res)=>{
 }
 
 const addUsers = async (req, res) => {
-    const result = await db.User.create(req.body);
-    res.json(result)
+   
+
+    try {
+        const result = await db.User.create(req.body);
+        res.json(result)
+    }
+    catch (err) {
+        console.log(err.message);
+        res.send({ "error": err.message })
+
+    }
 
 }
 
