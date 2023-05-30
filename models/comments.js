@@ -21,12 +21,19 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER
         },
         name: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            get(){
+                const rawValue = this.getDataValue('name');
+                return rawValue ? rawValue.toUpperCase() : null;
+            }
         },
         body: {
-            type: DataTypes.TEXT("medium")
+            type: DataTypes.TEXT("medium"),
+            set(value){
+                 this.setDataValue('body', `========> ${value}`);   
+            }
         },
-    post_id: {
+        post_id: {
             type: DataTypes.TEXT("medium")
         },
         user_id: {
