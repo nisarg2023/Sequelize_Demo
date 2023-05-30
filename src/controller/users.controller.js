@@ -1,7 +1,7 @@
 const db = require("../../models/index")
 
 const getAllUsers = async (req,res)=>{
-    const result = await db.User.findAll();
+    const result = await db.User.findAll({ include: { model: db.post }});
     res.json(result)
 }
 
