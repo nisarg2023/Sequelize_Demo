@@ -1,7 +1,7 @@
 const db = require("../../models/index")
 
 const getAllUsers = async (req,res)=>{
-    const result = await db.User.findAll({ include: { model: db.post }});
+    const result = await db.User.findAll();
     res.json(result)
 }
 
@@ -20,6 +20,15 @@ const addUsers = async (req, res) => {
 
 }
 
+const getUser = async (req, res) => {
+    console.log(req.params.id)
+    const result = await db.User.findByPk(req.params.id);
+}
+const deleteUser = async (req, res) => {
+    
+    const result = await db.User.destroy({ where: {id:req.params.id} });
+    res.json(result)
+}
 
 
-module.exports = {getAllUsers,addUsers}
+module.exports = { getAllUsers, addUsers, getUser, deleteUser }
