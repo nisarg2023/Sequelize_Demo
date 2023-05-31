@@ -52,6 +52,5 @@ module.exports = (sequelize, DataTypes) => {
         Comments.belongsTo(models.post, { foreignKey: 'post_id' })
        
     }
-
     return Comments;
 };
